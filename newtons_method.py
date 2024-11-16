@@ -8,7 +8,21 @@ def is_valid_func(input):
         sympify(input)
     except Exception as e:
         return False
-    
+
+def help_menu():
+    print("---------")
+    print("HELP MENU.")
+    print("input syntax and important tips :)")
+    print("---------")
+    print("Function variable must be 'x'")
+    print("---------")
+    print("2x -> 2*x")
+    print("x^5 -> x**5")
+    print("e -> E")
+    print("---------")
+    time.sleep(3)
+    return
+
 def newton(input_function, initial_x, iterations):
     #Test to see if function is valid
     test_valid = is_valid_func(input_function)
@@ -37,7 +51,9 @@ def launch_newton():
     #Newton active while loop for accepting repetitive inputs
     print("Please input the function.")
     the_function = input()
-    
+    if the_function.lower() == 'help':
+        help_menu()
+        return
     print("Please input the initial x value.")
     try:
         initial_x = float(input())
@@ -62,6 +78,7 @@ def launch_newton():
 #leave while loop, checks user input if they want to do more functions.
 #leave = true means user wants to stop
 def run_program():
+    print("type 'help' for input info")
     leave = False
     while leave is False:
         leave = False
@@ -70,13 +87,18 @@ def run_program():
         while ask_again:
             print("Would you like to do another? (Y/N)")
             response = input()
-            if response.lower() == ("n"):
+            if response.lower() == 'n':
                 ask_again = False
                 leave = True
                 print("See you later.")              
-            elif response.lower() != ("y"):
+
+            elif response.lower() == 'help':
+                help_menu()
+            
+            elif response.lower() != 'y':
                 print("I am lazy I only accept Y or N.")
                 time.sleep(1)
+            
             else:
                 ask_again = False
 
